@@ -12,7 +12,7 @@ import datetime
 
 import numpy as np
 
-storm_num = "test_1200"
+storm_num = "test_0"
 
 # Landfall for storm choosen
 if storm_num == "test":
@@ -449,7 +449,7 @@ def setgeo(rundata):
     #     topo_path = os.path.join(os.environ["DATA_PATH"], "topography",
     #     "indian")
     # else:
-    topo_path = os.path.join(os.getcwd(),'../../../bathy/')
+    topo_path = os.path.join(os.getcwd(),'../../../code/bathy')
     indian_ocean = os.path.join(topo_path, "indian_ocean.nc")
     mumbai_topo = os.path.join(topo_path, "mumbai.tt3")
     
@@ -507,22 +507,19 @@ def set_storm(rundata):
     data.landfall = days2seconds(landfall.days) + landfall.seconds
     data.display_landfall_time = True
 
+    storm_files = os.path.join(os.getcwd(),'../../../code/data/extracted-emanuel-tracks')
+    
     # Storm type 1 - Idealized storm track
     if storm_num == "test":
-        data.storm_file = os.path.expandvars(os.path.join(os.getcwd(),
-'mumbai_test.storm'))
+        data.storm_file = os.path.join(storm_files, "mumbai_test.storm")
     elif storm_num == "test_1200":
-        data.storm_file = os.path.expandvars(os.path.join(os.getcwd(),
-'mumbai_1200.storm'))
+        data.storm_file = os.path.join(storm_files, "mumbai_1200.storm")
     elif storm_num == "test_1000":
-        data.storm_file = os.path.expandvars(os.path.join(os.getcwd(),
-'mumbai_1000.storm'))
+        data.storm_file = os.path.join(storm_files, "mumbai_1000.storm")
     elif storm_num == "test_0":
-        data.storm_file = os.path.expandvars(os.path.join(os.getcwd(),
-'mumbai_0.storm'))
+        data.storm_file = os.path.join(storm_files, "mumbai_0.storm")
     elif storm_num == "test_1":
-        data.storm_file = os.path.expandvars(os.path.join(os.getcwd(),
-'mumbai_1.storm'))
+        data.storm_file = os.path.join(storm_files, "mumbai_1.storm")
 
     return rundata
 

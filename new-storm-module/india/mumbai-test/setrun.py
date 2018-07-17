@@ -106,7 +106,7 @@ def setrun(claw_pkg='geoclaw'):
     # -------------
     # Initial time:
     # -------------
-    clawdata.t0 = days2seconds(0.0)
+    clawdata.t0 = days2seconds(0)
 
     #  clawdata.t0 = days2seconds(landfall.days) + landfall.seconds
 
@@ -130,7 +130,7 @@ def setrun(claw_pkg='geoclaw'):
 
     if clawdata.output_style == 1:
         # Output nout frames at equally spaced times up to tfinal:
-        clawdata.tfinal = days2seconds(5.5)
+        clawdata.tfinal = days2seconds(6.0)
         recurrence = 4
         clawdata.num_output_times = int((clawdata.tfinal - clawdata.t0) *
                                         recurrence / (60**2 * 24))
@@ -495,10 +495,11 @@ def set_storm(rundata):
     storms = load_emanuel_storms(path = emanuel_tracks_path)
 
     # Load specific storm 
-    mumbai = storms[1]
+    mumbai = storms[0]
 
     # Write out track data to geoclaw storm file 
-    mumbai.write(data.storm_file, file_format='geoclaw')  
+    mumbai.write(data.storm_file, file_format='geoclaw') 
+    #mumbai.time_offset = datetime.datetime(2003, 5, 17, 0)  
 
     return rundata
 
