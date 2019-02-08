@@ -491,11 +491,14 @@ def set_storm(rundata):
     # Load Emanuel Tracks  
     emanuel_data_path = os.path.join('../../../../code',
                                     'data/mumbai-tracks/emanuel_tracks')
-    emanuel_tracks_path = os.path.join(emanuel_data_path, "Mumbai3_io_ncep_reanalcal.mat")
-    storms = load_emanuel_storms(path = emanuel_tracks_path)
+    emanuel_tracks_path = os.path.join(emanuel_data_path, "Mumbai3_io_ncep_reanalcal2.mat")
+    storms = load_emanuel_storms(path = emanuel_tracks_path, )
+    print(len(storms))
 
-    # Load specific storm 
-    mumbai = storms[0]
+    # Load specific storm
+    #1435_plots		1708_old_plots		1708_plots		1708_reanal_plots	618_plots		721_plots		grab_habanero.sh	oldPlots
+ 
+    mumbai = storms[1450]
 
     # Write out track data to geoclaw storm file 
     mumbai.write(data.storm_file, file_format='geoclaw') 

@@ -125,7 +125,7 @@ degree_factor
     # -------------
     # Initial time:
     # -------------
-    clawdata.t0 = days2seconds(landfall.days) + landfall.seconds 
+    clawdata.t0 = days2seconds(3)  
 
     # Restart from checkpoint file of a previous run?
     # Note: If restarting, you must also change the Makefile to set:
@@ -367,12 +367,12 @@ degree_factor
     # to specify regions of refinement append lines of the form
     #  [minlevel,maxlevel,t1,t2,x1,x2,y1,y2]
     # Mumbai Region
-    #regions.append([2, 5, rundata.clawdata.t0, rundata.clawdata.tfinal,
-    #                                        70, 75, 17, 22])
-    ## Mumbai
-    #regions.append([4, 7, days2seconds(landfall.days - 1.0) + landfall.seconds, 
-    #                      rundata.clawdata.tfinal,
-    #                      72.6, 73, 18.80, 19.15])
+    regions.append([2, 5, rundata.clawdata.t0, rundata.clawdata.tfinal,
+                                            70, 75, 17, 22])
+    # Mumbai
+    regions.append([4, 7, days2seconds(landfall.days - 1.0) + landfall.seconds, 
+                          rundata.clawdata.tfinal,
+                          72.6, 73, 18.80, 19.15])
 
     # == setgauges.data values ==
     # for gauges append lines of the form  [gaugeno, x, y, t1, t2]
@@ -406,7 +406,7 @@ def setgeo(rundata):
     try:
         geo_data = rundata.geo_data
     except:
-        print "*** Error, this rundata has no geo_data attribute"
+        print("*** Error, this rundata has no geo_data attribute")
         raise AttributeError("Missing geo_data attribute")
        
     # == Physics ==
